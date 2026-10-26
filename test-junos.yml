@@ -1,0 +1,14 @@
+---
+- name: Test Juniper Connectivity
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Run show version on Junos nodes
+      junipernetworks.junos.junos_command:
+        commands:
+          - show version
+      register: output
+
+    - name: Print version output
+      ansible.builtin.debug:
+        var: output.stdout
